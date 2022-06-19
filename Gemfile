@@ -33,6 +33,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'coderay'
+  gem 'rack-test'
+  gem 'sinatra'
 end
 
 group :development do
