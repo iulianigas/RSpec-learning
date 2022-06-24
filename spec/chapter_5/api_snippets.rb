@@ -1,7 +1,9 @@
-#dependency injection (DI)
-class API < Sinatra::Base 
+# frozen_string_literal: true
+
+# dependency injection (DI)
+class API < Sinatra::Base
   def initialize(ledger:)
-    @ledger = ledger 
+    @ledger = ledger
     super()
   end
 end
