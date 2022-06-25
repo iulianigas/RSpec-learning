@@ -1,11 +1,23 @@
 # frozen_string_literal: true
+require 'D:\Rspec_Learning\test_app\config\sequel.rb'
 
 module ExpenseTracker
   RecordResult = Struct.new(:success?, :expense_id, :error_message)
 
   class Ledger
-    def record(expense) end
+    def record(expense) 
+      unless expense.key?('payee')
+        message = "Invalid expense: 'payee' is required"
+        return RecordResult.new(false, nil, message)
+      end
 
-    def expenses_on(date) end
+      DB[:expenses].insert(expense)
+      id = DB[:expenses].max(:id)
+      RecordResult.new(true, id, nil)
+    end
+
+    def expenses_on(date) 
+      DB[:expenses].where(date: date).all
+    end
   end
 end
